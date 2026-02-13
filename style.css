@@ -1736,3 +1736,43 @@ button:hover {
   -webkit-animation-play-state: paused !important;
   animation-play-state: paused !important;
 } 
+/* Điều chỉnh dành riêng cho điện thoại */
+@media screen and (max-width: 480px) {
+    /* 1. Thu nhỏ toàn bộ bao thư để vừa màn hình dọc */
+    .wrapper {
+        transform: scale(0.75); /* Thu nhỏ còn 75% so với máy tính */
+        margin-top: 120px;      /* Đẩy bao thư xuống để có chỗ cho lá thư trồi lên */
+    }
+
+    /* 2. Ép lá thư phải hiện ra hết và nằm trên cùng */
+    .wrapper.open .letter {
+        /* Đẩy lá thư lên cao hơn nữa so với bao thư đã thu nhỏ */
+        transform: translateY(-240px) !important; 
+        z-index: 20 !important; /* Đảm bảo nằm đè lên nắp và thân bao thư */
+        height: 130%; /* Làm lá thư dài thêm để chứa đủ ảnh/chữ */
+    }
+
+    /* 3. Xử lý nắp bao thư để không che mất nội dung */
+    .wrapper.open .lid.one {
+        transform: rotateX(180deg) !important;
+        z-index: 0 !important; /* Đẩy nắp thư ra sau cùng */
+    }
+
+    /* 4. Điều chỉnh chữ và ảnh bên trong cho nhỏ lại một chút để không bị tràn */
+    .letter p {
+        font-size: 16px !important;
+        margin-bottom: 5px;
+    }
+
+    .letter img {
+        max-height: 100px !important;
+        width: auto !important;
+    }
+
+    /* 5. Đảm bảo nút bấm không đè lên lá thư */
+    .buttons {
+        position: fixed;
+        bottom: 20px;
+        z-index: 99999;
+    }
+}
